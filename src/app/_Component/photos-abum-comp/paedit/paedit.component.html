@@ -1,0 +1,99 @@
+<div class="container-scroller">
+    <app-navbar></app-navbar>
+    <div class="container-fluid page-body-wrapper">
+        <app-sidebar></app-sidebar>
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <table class="table table-striped">
+                    <thead class="table-striped">
+                        <tr>
+                            <th>CategoeryId</th>
+                            <th>albumName</th>
+                            <th>AlbumTitle</th>
+                            <th>ImageNameO</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <div class="links">&nbsp;</div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td>{{_PhotoToCreate.CategoeryId}}</td>
+                            <td>{{_PhotoToCreate.AlbumName}}</td>
+                            <td>{{_PhotoToCreate.AlbumTitle}}</td>
+
+
+                            <td><img class="" src="{{_PathUrlsModule.PathFolder+_PhotoToCreate.ImageNameO}}"> </td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                <!-- <h1 class="badge badge-danger" style="font-size: large;">Please update one image to complete the modifications </h1> -->
+                <br/>
+
+                <button (click)="enableEdit = true" class="btn btn-warning">Edit</button>
+                <button class="btn btn-info" (click)="BackUrl()">Back</button>
+
+                <button *ngIf="enableEdit" class="btn btn-dark">Save</button>
+                <button *ngIf="enableEdit" (click)="enableEdit=false">Cancel</button>
+
+
+                <!-- End Get info album info -->
+                <article *ngIf="enableEdit" class="container container-fluid">
+                    <section class="create" *ngIf="isCreate">
+                        <h1>Update Album</h1>
+                        <form>
+                            <div class="form-group">
+
+                                <label for="name">Album Name</label>
+                                <input type="text" class="form-control" id="albumName" name="albumName" placeholder="Enter your name" [(ngModel)]="albumName">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Album Title</label>
+                                <input type="text" class="form-control" id="albumTitle" name="albumTitle" placeholder="Enter your address" [(ngModel)]="albumTitle">
+                            </div>
+                            <!-- Start Get All _Category Name and ID -->
+                            <div class="form-group">
+
+                                <div style="float:left;padding:10px;margin:0 auto;" *ngIf="_Category">
+                                    <label for="Category">Category</label>
+
+                                    <select [(ngModel)]="selected" name="myCat">
+    <option *ngFor="let cat of _Category" [(ngValue)]="cat.NameCategory && cat.CategoeryId">{{cat.NameCategory}}</option>
+  </select>
+                                    <input hidden class="form-control" name="CategoeryId" #CategoeryId="ngModel" [(ngModel)]=selected>
+
+                                </div>
+                            </div>
+                            <!-- End Get All _Category Name and ID -->
+                            <!--  -->
+                            <br/>
+                            <!-- 
+                            <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload> -->
+                            <br/>
+
+                            <div class="row">
+                                <div class="">
+
+                                    <button type="button" class="btn btn-primary" (click)="onUpdate()">Save </button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+
+                </article>
+
+
+            </div>
+            <app-footer></app-footer>
+        </div>
+    </div>

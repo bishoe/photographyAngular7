@@ -1,0 +1,46 @@
+<div class="row" style="margin-bottom:15px;">
+    <div class="col-md-3">
+        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" multiple>
+
+        <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+    </div>
+    <div class="col-md-4">
+        <span class="upload" *ngIf="progress > 0">
+      {{progress}}%
+    </span>
+        <span class="upload" *ngIf="message">
+      {{message}}
+    </span>
+    </div>
+</div>
+
+<!-- <label for="uploadFile"  class="btn btn-primary">Upload Documents</label> -->
+
+<!-- work<input type="file" id="uploadFile" style="display: none"    (change)="getFileDetails($event)" 
+ style="margin: 8px;
+     padding: 8px 5px;
+     color: #333;
+     width: auto;
+     cursor: pointer;" multiple> 
+  
+
+  work<div *ngFor="let fi of images">
+  
+    <h4>Name : {{ fi.name }}</h4>
+    <h4>Type : {{ fi.type }}</h4>
+    <h4>Size : {{ fi.size }}</h4>
+    <h4>Last : {{ fi.lastModifiedDate }}</h4>
+    <hr />
+</div>end work  -->
+<!-- <table cellpadding="4" class="grid" >
+ <tbody>
+    <tr *ngFor="let file of files ;let i = index">
+    <td> {{file.name}}</td>
+  
+           <input type="text" name="id"   #id="ngModel" [(ngModel)]=file.name>        
+            
+
+    </tr>
+</tbody>
+</table>
+  -->

@@ -1,0 +1,79 @@
+<div class="container-scroller">
+    <app-navbar></app-navbar>
+    <div class="container-fluid page-body-wrapper">
+        <app-sidebar></app-sidebar>
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <article class="container container-fluid">
+                    <section class="create" *ngIf="isCreate">
+                        <h1>Create User</h1>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Album Name</label>
+                                <input type="text" class="form-control" id="albumName" name="albumName" placeholder="Enter your name" [(ngModel)]="albumName">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="address">Album Title</label>
+                                <input type="text" class="form-control" id="albumTitle" name="albumTitle" placeholder="Enter your address" [(ngModel)]="albumTitle">
+                            </div>
+                            <!-- Start Get All _Category Name and ID -->
+                            <div class="form-group">
+
+                                <div style="float:left;padding:10px;margin:0 auto;" *ngIf="_Category">
+                                    <label for="Category">Category</label>
+
+                                    <select [(ngModel)]="selected" name="myCat">
+    <option *ngFor="let cat of _Category" [(ngValue)]="cat.NameCategory && cat.CategoeryId">{{cat.NameCategory}}</option>
+  </select>
+                                    <input class="form-control" name="CategoeryId" #CategoeryId="ngModel" [(ngModel)]=selected>
+
+                                </div>
+                            </div>
+                            <!-- End Get All _Category Name and ID -->
+                            <!--  -->
+
+
+
+                            <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+                            <div class="row">
+                                <div class="offset-md-5 col-md-2">
+                                    <button type="button" class="btn btn-primary" (click)="onCreate()">Create </button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+                    <section class="users" *ngIf="!isCreate">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let photo of photos">
+                                    <td><img [src]="createImgPath(photo.ImageNameO)" alt="profile picture" style="width:60px; height:60px;"></td>
+                                    <td>{{photo.albumName}}</td>
+                                    <td>{{photo.albumTitle}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="offset-md-10 col-md-2">
+                                <button type="button" class="btn btn-primary" (click)="returnToCreate()">New User</button>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+                <button class="btn btn-block btn-warning" [routerLink]="['/PAListEdit']">Edit Album</button>
+
+
+            </div>
+            <app-footer></app-footer>
+        </div>
+    </div>

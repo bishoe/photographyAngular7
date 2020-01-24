@@ -1,0 +1,43 @@
+<div class="container-scroller">
+    <app-navbar></app-navbar>
+    <div class="container-fluid page-body-wrapper">
+        <app-sidebar></app-sidebar>
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+
+                <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>DateCategory</th>
+                            <th><img src="assets/images/icons8-compose-48.png"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let categorys of cats">
+                            <td>{{categorys.CategoeryId}}</td>
+                            <td>{{categorys.NameCategory}}</td>
+                            <td>{{categorys.CategoryDate}}</td>
+                            <td>
+                                <a class="btn" (click)="showForEdit(categorys)">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </a>
+                                <a class="btn text-danger" (click)="onDelete(categorys.IDCategoery)">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <app-footer></app-footer>
+        </div>
+    </div>
